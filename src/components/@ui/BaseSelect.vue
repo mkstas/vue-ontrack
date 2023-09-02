@@ -5,8 +5,19 @@ import BaseButton from './BaseButton.vue';
 
 defineProps({
   selected: Number,
-  options: Object,
-  placeholder: String,
+  options: {
+    type: Array,
+    required: true,
+    validator(options) {
+      return options.every(
+        ({ value, label }) => typeof value === 'number' && typeof label === 'string',
+      );
+    },
+  },
+  placeholder: {
+    type: String,
+    required: true,
+  },
 });
 </script>
 
