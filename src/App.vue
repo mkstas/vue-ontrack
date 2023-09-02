@@ -2,7 +2,7 @@
 import { ref } from 'vue';
 
 import { PAGE_ACTIVITIES, PAGE_PROGRESS, PAGE_TIMELINE } from './constans';
-import { normalizePageHash } from './functions';
+import { normalizePageHash, generateTimelineItems } from './functions';
 
 import TheHeader from './components/header/TheHeader.vue';
 import TheNav from './components/nav/TheNav.vue';
@@ -13,6 +13,8 @@ import ProgressView from './views/ProgressView.vue';
 
 const currentPage = ref(normalizePageHash());
 
+const timelineItems = generateTimelineItems();
+
 const goTo = (page) => {
   currentPage.value = page;
 };
@@ -22,7 +24,7 @@ const goTo = (page) => {
   <TheHeader @go-to-timeline="goTo(PAGE_TIMELINE)" @go-to-progress="goTo(PAGE_PROGRESS)" />
 
   <main class="flex flex-grow flex-col">
-    <TimelineView v-show="currentPage === PAGE_TIMELINE" />
+    <TimelineView v-show="currentPage === PAGE_TIMELINE" :timeline-items="timelineItems" />
     <ActivitiesView v-show="currentPage === PAGE_ACTIVITIES" />
     <ProgressView v-show="currentPage === PAGE_PROGRESS" />
   </main>
