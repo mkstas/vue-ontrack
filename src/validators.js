@@ -7,3 +7,15 @@ export const isPageValid = (page) => {
 export const isTimelineValid = ({ hour }) => {
   return typeof hour === 'number' && hour >= MIDNIGT_HOUR && hour < HOURS_IN_DAY;
 };
+
+export const validateTimelineItems = (timelineItems) => {
+  return timelineItems.every(isTimelineValid);
+};
+
+const isSelectOptionValid = ({ value, label }) => {
+  return typeof value === 'number' && typeof label === 'string';
+};
+
+export const validateSelectOptions = (options) => {
+  return options.every(isSelectOptionValid);
+};
