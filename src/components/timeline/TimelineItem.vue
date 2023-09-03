@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue';
 
-import { isTimelineValid } from '@/validators';
+import { isTimelineValid, validateSelectOptions } from '@/validators';
 
 import BaseSelect from '../@ui/BaseSelect.vue';
 import TimelineHour from './TimelineHour.vue';
@@ -12,15 +12,14 @@ defineProps({
     required: true,
     validator: isTimelineValid,
   },
+  activitySelectOptions: {
+    type: Array,
+    required: true,
+    validator: validateSelectOptions,
+  },
 });
 
-const options = [
-  { value: 1, label: 'Coding' },
-  { value: 2, label: 'Reading' },
-  { value: 3, label: 'Training' },
-];
-
-const selectedActivityId = ref(1);
+const selectedActivityId = ref(0);
 </script>
 
 <template>
@@ -28,7 +27,7 @@ const selectedActivityId = ref(1);
     <TimelineHour :hour="timelineItem.hour" />
     <BaseSelect
       :selected="selectedActivityId"
-      :options="options"
+      :options="activitySelectOptions"
       placeholder="Rest"
       @select="selectedActivityId = $event"
     />

@@ -20,12 +20,12 @@ const isBetween = (value, start, end) => {
   return value >= start && value <= end;
 };
 
-const isSelectOptionValid = ({ value, label }) => {
-  return isNumber(value) && isString(label);
-};
-
 const isNotEmptyString = (value) => {
   return isString(value) && value.length > 0;
+};
+
+const isSelectOptionValid = ({ value, label }) => {
+  return isNumber(value) && isNotEmptyString(label);
 };
 
 export const isUndefinedOrNull = (value) => {

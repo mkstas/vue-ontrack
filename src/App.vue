@@ -2,7 +2,11 @@
 import { ref } from 'vue';
 
 import { PAGE_ACTIVITIES, PAGE_PROGRESS, PAGE_TIMELINE } from '@/constans';
-import { normalizePageHash, generateTimelineItems } from '@/functions';
+import {
+  normalizePageHash,
+  generateTimelineItems,
+  generateActivitySelectOptions,
+} from '@/functions';
 
 import TheHeader from '@/components/header/TheHeader.vue';
 import TheNav from '@/components/nav/TheNav.vue';
@@ -17,6 +21,8 @@ const timelineItems = generateTimelineItems();
 
 const activities = ['Coding', 'Reading', 'Training'];
 
+const activitySelectOptions = generateActivitySelectOptions(activities);
+
 const goTo = (page) => {
   currentPage.value = page;
 };
@@ -26,7 +32,11 @@ const goTo = (page) => {
   <TheHeader @navigate="goTo($event)" />
 
   <main class="flex flex-grow flex-col">
-    <TimelineView v-show="currentPage === PAGE_TIMELINE" :timeline-items="timelineItems" />
+    <TimelineView
+      v-show="currentPage === PAGE_TIMELINE"
+      :timeline-items="timelineItems"
+      :activity-select-options="activitySelectOptions"
+    />
     <ActivitiesView v-show="currentPage === PAGE_ACTIVITIES" :activities="activities" />
     <ProgressView v-show="currentPage === PAGE_PROGRESS" />
   </main>
