@@ -24,6 +24,10 @@ const isSelectOptionValid = ({ value, label }) => {
   return isNumber(value) && isString(label);
 };
 
+const isNotEmptyString = (value) => {
+  return isString(value) && value.length > 0;
+};
+
 export const isUndefinedOrNull = (value) => {
   return isUndefined(value) || isNull(value);
 };
@@ -50,4 +54,12 @@ export const validateTimelineItems = (timelineItems) => {
 
 export const validateSelectOptions = (options) => {
   return options.every(isSelectOptionValid);
+};
+
+export const isActivityValid = (activity) => {
+  return isNotEmptyString(activity);
+};
+
+export const validateActivities = (activities) => {
+  return activities.every(isActivityValid);
 };
