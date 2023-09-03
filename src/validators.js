@@ -20,10 +20,6 @@ const isBetween = (value, start, end) => {
   return value >= start && value <= end;
 };
 
-const isHourValid = (hour) => {
-  return isNumber(hour) && isBetween(hour, MIDNIGT_HOUR, HOURS_IN_DAY - 1);
-};
-
 const isSelectOptionValid = ({ value, label }) => {
   return isNumber(value) && isString(label);
 };
@@ -38,6 +34,10 @@ export const isNumberOrNull = (value) => {
 
 export const isPageValid = (page) => {
   return Object.keys(NAV_ITEMS).includes(page);
+};
+
+export const isHourValid = (hour) => {
+  return isNumber(hour) && isBetween(hour, MIDNIGT_HOUR, HOURS_IN_DAY - 1);
 };
 
 export const isTimelineValid = ({ hour }) => {
