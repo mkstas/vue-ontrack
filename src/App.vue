@@ -1,15 +1,15 @@
 <script setup>
 import { ref } from 'vue';
 
-import { PAGE_ACTIVITIES, PAGE_PROGRESS, PAGE_TIMELINE } from './constans';
-import { normalizePageHash, generateTimelineItems } from './functions';
+import { PAGE_ACTIVITIES, PAGE_PROGRESS, PAGE_TIMELINE } from '@/constans';
+import { normalizePageHash, generateTimelineItems } from '@/functions';
 
-import TheHeader from './components/header/TheHeader.vue';
-import TheNav from './components/nav/TheNav.vue';
+import TheHeader from '@/components/header/TheHeader.vue';
+import TheNav from '@/components/nav/TheNav.vue';
 
-import TimelineView from './views/TimelineView.vue';
-import ActivitiesView from './views/ActivitiesView.vue';
-import ProgressView from './views/ProgressView.vue';
+import TimelineView from '@/views/TimelineView.vue';
+import ActivitiesView from '@/views/ActivitiesView.vue';
+import ProgressView from '@/views/ProgressView.vue';
 
 const currentPage = ref(normalizePageHash());
 

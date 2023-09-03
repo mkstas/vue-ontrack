@@ -1,5 +1,5 @@
 <script setup>
-import { isTimelineValid } from '../../validators';
+import { isTimelineValid } from '@/validators';
 
 import BaseSelect from '../@ui/BaseSelect.vue';
 

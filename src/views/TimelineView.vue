@@ -1,7 +1,7 @@
 <script setup>
-import { isTimelineValid } from '../validators';
+import { isTimelineValid } from '@/validators';
 
-import TimelineItem from '../components/timeline/TimelineItem.vue';
+import TimelineItem from '@/components/Timeline/TimelineItem.vue';
 
 defineProps({
   timelineItems: {
