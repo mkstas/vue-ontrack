@@ -1,4 +1,4 @@
-import { NAV_ITEMS, HOURS_IN_DAY, MIDNIGT_HOUR } from './constans';
+import { NAV_ITEMS, HOURS_IN_DAY, MIDNIGT_HOUR, BUTTON_TYPES } from './constans';
 
 const isUndefined = (value) => {
   return value === undefined;
@@ -38,6 +38,10 @@ export const isNumberOrNull = (value) => {
 
 export const isPageValid = (page) => {
   return Object.keys(NAV_ITEMS).includes(page);
+};
+
+export const isButtonTypeValid = (type) => {
+  return BUTTON_TYPES.includes(type);
 };
 
 export const isHourValid = (hour) => {
