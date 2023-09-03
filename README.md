@@ -1,28 +1,26 @@
 # OnTrack
 
-## Customize configuration
+Разработано по [видео-урокам](https://www.youtube.com/watch?v=t4NbbyXsgP8&list=PL-FhWbGlJPfaCm9Qx7G9wQqtt2_yBT92V&index=2&ab_channel=ИгорьБабко)
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
+## Установка проекта
 
 ```sh
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+### Сборка для разработки
 
 ```sh
 npm run dev
 ```
 
-### Compile and Minify for Production
+### Сборка и минификация для продакшина
 
 ```sh
 npm run build
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+### Линтер
 
 ```sh
 npm run lint
