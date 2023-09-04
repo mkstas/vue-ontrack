@@ -1,9 +1,5 @@
 import { NAV_ITEMS, HOURS_IN_DAY, MIDNIGT_HOUR, BUTTON_TYPES } from './constans';
 
-const isUndefined = (value) => {
-  return value === undefined;
-};
-
 const isNumber = (value) => {
   return typeof value === 'number';
 };
@@ -26,6 +22,10 @@ const isNotEmptyString = (value) => {
 
 const isSelectOptionValid = ({ value, label }) => {
   return isNumber(value) && isNotEmptyString(label);
+};
+
+export const isUndefined = (value) => {
+  return value === undefined;
 };
 
 export const isUndefinedOrNull = (value) => {
