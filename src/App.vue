@@ -9,8 +9,8 @@ import {
   generateActivitySelectOptions,
 } from '@/functions';
 
-import TheHeader from '@/components/header/TheHeader.vue';
-import TheNav from '@/components/nav/TheNav.vue';
+import TheHeader from '@/components/Header/TheHeader.vue';
+import TheNav from '@/components/Nav/TheNav.vue';
 
 import TimelineView from '@/views/TimelineView.vue';
 import ActivitiesView from '@/views/ActivitiesView.vue';
@@ -47,6 +47,10 @@ const deleteActivity = (activity) => {
 const setTimelineItemActivity = ({ timelineItem, activity }) => {
   timelineItem.activityId = activity?.id || null;
 };
+
+const setActivitySecondsToComplete = (activity, secondsToComplete) => {
+  activity.secondsToComplete = secondsToComplete;
+};
 </script>
 
 <template>
@@ -65,6 +69,7 @@ const setTimelineItemActivity = ({ timelineItem, activity }) => {
       :activities="activities"
       @create-activity="createActivity"
       @delete-activity="deleteActivity"
+      @set-activity-seconds-to-complete="setActivitySecondsToComplete"
     />
     <ProgressView v-show="currentPage === PAGE_PROGRESS" />
   </main>
