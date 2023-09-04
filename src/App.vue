@@ -18,7 +18,7 @@ import ProgressView from '@/views/ProgressView.vue';
 
 const currentPage = ref(normalizePageHash());
 
-const timelineItems = generateTimelineItems();
+const timelineItems = ref(generateTimelineItems());
 
 const activities = ref(generateActivities());
 
@@ -35,7 +35,17 @@ const createActivity = (activity) => {
 };
 
 const deleteActivity = (activity) => {
+  timelineItems.value.forEach((timelineItem) => {
+    if (timelineItem.activityId === activity.id) {
+      timelineItem.activityId = null;
+    }
+  });
+
   activities.value.splice(activities.value.indexOf(activity), 1);
+};
+
+const setTimelineItemActivity = ({ timelineItem, activity }) => {
+  timelineItem.activityId = activity?.id || null;
 };
 </script>
 
@@ -46,7 +56,9 @@ const deleteActivity = (activity) => {
     <TimelineView
       v-show="currentPage === PAGE_TIMELINE"
       :timeline-items="timelineItems"
+      :activities="activities"
       :activity-select-options="activitySelectOptions"
+      @set-timeline-item-activity="setTimelineItemActivity"
     />
     <ActivitiesView
       v-show="currentPage === PAGE_ACTIVITIES"

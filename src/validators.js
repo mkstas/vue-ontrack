@@ -59,7 +59,7 @@ export const isHourValid = (hour) => {
   return isNumber(hour) && isBetween(hour, MIDNIGT_HOUR, HOURS_IN_DAY - 1);
 };
 
-export const isTimelineValid = ({ hour }) => {
+export const isTimelineItemValid = ({ hour }) => {
   return isHourValid(hour);
 };
 
@@ -72,7 +72,7 @@ export const isActivityValid = ({ id, name, secondsToComplete }) => {
 };
 
 export const validateTimelineItems = (timelineItems) => {
-  return timelineItems.every(isTimelineValid);
+  return timelineItems.every(isTimelineItemValid);
 };
 
 export const validateSelectOptions = (options) => {
