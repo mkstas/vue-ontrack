@@ -5,34 +5,28 @@ import {
   BUTTON_TYPES,
 } from './constans';
 
-const isNumber = (value) => {
-  return typeof value === 'number';
-};
-
-const isString = (value) => {
-  return typeof value === 'string';
-};
-
-const isNull = (value) => {
+export const isNull = (value) => {
   return value === null;
-};
-
-const isBetween = (value, start, end) => {
-  return value >= start && value <= end;
-};
-
-const isNotEmptyString = (value) => {
-  return isString(value) && value.length > 0;
-};
-
-const isSelectOptionValid = ({ value, label }) => {
-  return (
-    isNumber(value) || (isNotEmptyString(label) && isNotEmptyString(label))
-  );
 };
 
 export const isUndefined = (value) => {
   return value === undefined;
+};
+
+export const isNumber = (value) => {
+  return typeof value === 'number';
+};
+
+export const isString = (value) => {
+  return typeof value === 'string';
+};
+
+export const isBetween = (value, start, end) => {
+  return value >= start && value <= end;
+};
+
+export const isNotEmptyString = (value) => {
+  return isString(value) && value.length > 0;
 };
 
 export const isUndefinedOrNull = (value) => {
@@ -41,6 +35,16 @@ export const isUndefinedOrNull = (value) => {
 
 export const isNumberOrNull = (value) => {
   return isNumber(value) || isNull(value);
+};
+
+export const isSelectOptionValid = ({ value, label }) => {
+  return (
+    isNumber(value) || (isNotEmptyString(label) && isNotEmptyString(label))
+  );
+};
+
+export const isSelectValueValid = (value) => {
+  return isNotEmptyString(value) || isNumberOrNull(value);
 };
 
 export const isPageValid = (page) => {
@@ -59,20 +63,20 @@ export const isTimelineValid = ({ hour }) => {
   return isHourValid(hour);
 };
 
-export const validateTimelineItems = (timelineItems) => {
-  return timelineItems.every(isTimelineValid);
-};
-
-export const validateSelectOptions = (options) => {
-  return options.every(isSelectOptionValid);
-};
-
 export const isActivityValid = ({ id, name, secondsToComplete }) => {
   return [
     isNotEmptyString(id),
     isNotEmptyString(name),
     isNumber(secondsToComplete),
   ].every(Boolean);
+};
+
+export const validateTimelineItems = (timelineItems) => {
+  return timelineItems.every(isTimelineValid);
+};
+
+export const validateSelectOptions = (options) => {
+  return options.every(isSelectOptionValid);
 };
 
 export const validateActivities = (activities) => {

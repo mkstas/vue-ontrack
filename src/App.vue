@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 
 import { PAGE_ACTIVITIES, PAGE_PROGRESS, PAGE_TIMELINE } from '@/constans';
 import {
@@ -22,7 +22,9 @@ const timelineItems = generateTimelineItems();
 
 const activities = ref(generateActivities());
 
-const activitySelectOptions = generateActivitySelectOptions(activities.value);
+const activitySelectOptions = computed(() =>
+  generateActivitySelectOptions(activities.value),
+);
 
 const goTo = (page) => {
   currentPage.value = page;

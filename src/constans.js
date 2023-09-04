@@ -1,10 +1,18 @@
-import { ClockIcon, ListBulletIcon, ChartBarIcon } from '@heroicons/vue/24/outline';
+import {
+  ClockIcon,
+  ListBulletIcon,
+  ChartBarIcon,
+} from '@heroicons/vue/24/outline';
 
 export const BUTTON_TYPE_PRIMARY = 'primary';
 export const BUTTON_TYPE_NEUTRAL = 'neutral';
 export const BUTTON_TYPE_DANGER = 'danger';
 
-export const BUTTON_TYPES = [BUTTON_TYPE_PRIMARY, BUTTON_TYPE_NEUTRAL, BUTTON_TYPE_DANGER];
+export const BUTTON_TYPES = [
+  BUTTON_TYPE_PRIMARY,
+  BUTTON_TYPE_NEUTRAL,
+  BUTTON_TYPE_DANGER,
+];
 
 export const PAGE_TIMELINE = 'timeline';
 export const PAGE_ACTIVITIES = 'activities';
@@ -22,15 +30,15 @@ export const NAV_ITEMS = {
 
 export const PERIOD_SELECT_OPTIONS = [
   {
-    value: 15,
+    value: 15 * 60,
     label: '0:15',
   },
   {
-    value: 30,
+    value: 30 * 60,
     label: '0:30',
   },
   {
-    value: 45,
+    value: 45 * 60,
     label: '0:45',
   },
 ];

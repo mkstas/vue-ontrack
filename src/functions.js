@@ -4,7 +4,7 @@ import {
   MIDNIGT_HOUR,
   SECONDS_IN_HOUR,
 } from './constans';
-import { isPageValid } from './validators';
+import { isPageValid, isNull } from './validators';
 
 export const normalizePageHash = () => {
   const page = window.location.hash.slice(1);
@@ -16,6 +16,10 @@ export const normalizePageHash = () => {
   window.location.hash = PAGE_TIMELINE;
 
   return PAGE_TIMELINE;
+};
+
+export const normalizeSelectValue = (value) => {
+  return isNull(value) || isNaN(value) ? value : +value;
 };
 
 export const generateTimelineItems = () => {
