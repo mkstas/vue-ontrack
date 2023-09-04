@@ -1,4 +1,9 @@
-import { PAGE_TIMELINE, HOURS_IN_DAY, MIDNIGT_HOUR, SECONDS_IN_HOUR } from './constans';
+import {
+  PAGE_TIMELINE,
+  HOURS_IN_DAY,
+  MIDNIGT_HOUR,
+  SECONDS_IN_HOUR,
+} from './constans';
 import { isPageValid } from './validators';
 
 export const normalizePageHash = () => {
@@ -28,25 +33,16 @@ export const id = () => {
 };
 
 export const generateActivities = () => {
-  return [
-    {
-      id: id(),
-      name: 'Coding',
-      secondsToComplete: 0 * SECONDS_IN_HOUR,
-    },
-    {
-      id: id(),
-      name: 'Training',
-      secondsToComplete: 1 * SECONDS_IN_HOUR,
-    },
-    {
-      id: id(),
-      name: 'Reading',
-      secondsToComplete: 2 * SECONDS_IN_HOUR,
-    },
-  ];
+  return ['Coding', 'Reading', 'Trainig'].map((name, hours) => ({
+    id: id(),
+    name,
+    secondsToComplete: hours * SECONDS_IN_HOUR,
+  }));
 };
 
 export const generateActivitySelectOptions = (activities) => {
-  return activities.map((activity) => ({ label: activity.name, value: activity.id }));
+  return activities.map((activity) => ({
+    label: activity.name,
+    value: activity.id,
+  }));
 };

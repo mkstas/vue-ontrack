@@ -3,6 +3,7 @@ import { nextTick, ref } from 'vue';
 import { PlusIcon } from '@heroicons/vue/24/outline';
 
 import { isActivityValid } from '@/validators';
+import { id } from '@/functions';
 
 import BaseButton from '@/components/@ui/BaseButton.vue';
 
@@ -10,11 +11,16 @@ const emit = defineEmits({
   submit: isActivityValid,
 });
 
-const activity = ref('');
+const name = ref('');
 
 const submit = async () => {
-  emit('submit', activity.value);
-  activity.value = '';
+  emit('submit', {
+    id: id(),
+    name: name.value,
+    secondsToComplete: 0,
+  });
+
+  name.value = '';
 
   await nextTick();
 
@@ -29,11 +35,11 @@ const submit = async () => {
   >
     <input
       type="text"
-      v-model="activity"
+      v-model="name"
       class="w-full rounded border px-4 text-xl"
       placeholder="Activity name"
     />
-    <BaseButton :disabled="activity.trim() === ''">
+    <BaseButton :disabled="name.trim() === ''">
       <PlusIcon class="h-8" />
     </BaseButton>
   </form>

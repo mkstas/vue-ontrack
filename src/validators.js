@@ -1,4 +1,9 @@
-import { NAV_ITEMS, HOURS_IN_DAY, MIDNIGT_HOUR, BUTTON_TYPES } from './constans';
+import {
+  NAV_ITEMS,
+  HOURS_IN_DAY,
+  MIDNIGT_HOUR,
+  BUTTON_TYPES,
+} from './constans';
 
 const isNumber = (value) => {
   return typeof value === 'number';
@@ -21,7 +26,9 @@ const isNotEmptyString = (value) => {
 };
 
 const isSelectOptionValid = ({ value, label }) => {
-  return isNumber(value) && isNotEmptyString(label);
+  return (
+    isNumber(value) || (isNotEmptyString(label) && isNotEmptyString(label))
+  );
 };
 
 export const isUndefined = (value) => {
@@ -60,8 +67,12 @@ export const validateSelectOptions = (options) => {
   return options.every(isSelectOptionValid);
 };
 
-export const isActivityValid = (activity) => {
-  return isNotEmptyString(activity);
+export const isActivityValid = ({ id, name, secondsToComplete }) => {
+  return [
+    isNotEmptyString(id),
+    isNotEmptyString(name),
+    isNumber(secondsToComplete),
+  ].every(Boolean);
 };
 
 export const validateActivities = (activities) => {

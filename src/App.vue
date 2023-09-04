@@ -3,7 +3,6 @@ import { ref } from 'vue';
 
 import { PAGE_ACTIVITIES, PAGE_PROGRESS, PAGE_TIMELINE } from '@/constans';
 import {
-  id,
   normalizePageHash,
   generateTimelineItems,
   generateActivities,
@@ -29,12 +28,8 @@ const goTo = (page) => {
   currentPage.value = page;
 };
 
-const createActivity = (name) => {
-  activities.value.push({
-    id: id(),
-    name,
-    secondsToComplete: 0,
-  });
+const createActivity = (activity) => {
+  activities.value.push(activity);
 };
 
 const deleteActivity = (activity) => {
