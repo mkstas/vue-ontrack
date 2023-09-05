@@ -1,6 +1,6 @@
 <script setup>
+import { NULLABLE_ACTIVITY } from '@/constans';
 import {
-  isNull,
   isTimelineItemValid,
   isActivityValid,
   validateSelectOptions,
@@ -29,16 +29,17 @@ const props = defineProps({
 });
 
 const emit = defineEmits({
-  selectActivity(activity) {
-    return isNull(activity) || isActivityValid(activity);
-  },
+  selectActivity: isActivityValid,
 });
 
-const selectActivity = (id) => {
-  emit(
-    'selectActivity',
-    props.activities.find((activity) => activity.id === id) || null,
+const findActivityById = (id) => {
+  return (
+    props.activities.find((activity) => activity.id === id) || NULLABLE_ACTIVITY
   );
+};
+
+const selectActivity = (id) => {
+  emit('selectActivity', findActivityById(id));
 };
 </script>
 

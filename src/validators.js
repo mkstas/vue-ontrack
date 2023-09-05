@@ -64,6 +64,10 @@ export const isTimelineItemValid = ({ hour }) => {
 };
 
 export const isActivityValid = ({ id, name, secondsToComplete }) => {
+  if (isNull(id)) {
+    return true;
+  }
+
   return [
     isNotEmptyString(id),
     isNotEmptyString(name),

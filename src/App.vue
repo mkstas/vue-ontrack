@@ -44,8 +44,8 @@ const deleteActivity = (activity) => {
   activities.value.splice(activities.value.indexOf(activity), 1);
 };
 
-const setTimelineItemActivity = ({ timelineItem, activity }) => {
-  timelineItem.activityId = activity?.id || null;
+const setTimelineItemActivity = (timelineItem, activity) => {
+  timelineItem.activityId = activity.id;
 };
 
 const setActivitySecondsToComplete = (activity, secondsToComplete) => {
