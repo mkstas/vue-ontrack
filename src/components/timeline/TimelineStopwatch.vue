@@ -8,7 +8,7 @@ import {
   BUTTON_TYPE_DANGER,
   MILLISECONDS_IN_SECOND,
 } from '@/constans';
-import { isNumber } from '@/validators';
+import { isNumber, isHourValid } from '@/validators';
 import { formatSeconds } from '@/functions';
 
 import BaseButton from '../@ui/BaseButton.vue';
@@ -19,10 +19,17 @@ const props = defineProps({
     default: 0,
     validator: isNumber,
   },
+  hour: {
+    type: Number,
+    required: true,
+    validator: isHourValid,
+  },
 });
 
 const seconds = ref(props.seconds);
 const isRunning = ref(false);
+
+const isStartButtonDisabled = props.hour !== new Date().getHours();
 
 const start = () => {
   isRunning.value = setInterval(() => {
@@ -39,13 +46,13 @@ const stop = () => {
 const reset = () => {
   stop();
 
-  seconds.value = props.seconds;
+  seconds.value = 0;
 };
 </script>
 
 <template>
   <div class="flex w-full gap-2">
-    <BaseButton :type="BUTTON_TYPE_DANGER" @click="reset">
+    <BaseButton :type="BUTTON_TYPE_DANGER" :disabled="!seconds" @click="reset">
       <ArrowPathIcon class="h-8" />
     </BaseButton>
     <div
@@ -56,7 +63,12 @@ const reset = () => {
     <BaseButton v-if="isRunning" :type="BUTTON_TYPE_WARNING" @click="stop">
       <PauseIcon class="h-8" />
     </BaseButton>
-    <BaseButton v-else :type="BUTTON_TYPE_SUCCESS" @click="start">
+    <BaseButton
+      v-else
+      :type="BUTTON_TYPE_SUCCESS"
+      :disabled="isStartButtonDisabled"
+      @click="start"
+    >
       <PlayIcon class="h-8" />
     </BaseButton>
   </div>
