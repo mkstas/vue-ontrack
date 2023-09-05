@@ -1,7 +1,11 @@
 <script setup>
+import { nextTick, ref, watchPostEffect } from 'vue';
+
+import { MIDNIGHT_HOUR, PAGE_TIMELINE } from '@/constans';
 import {
   isActivityValid,
   isTimelineItemValid,
+  isPageValid,
   validateTimelineItems,
   validateSelectOptions,
   validateActivities,
@@ -9,7 +13,7 @@ import {
 
 import TimelineItem from '@/components/Timeline/TimelineItem.vue';
 
-defineProps({
+const props = defineProps({
   timelineItems: {
     type: Array,
     required: true,
@@ -25,6 +29,11 @@ defineProps({
     required: true,
     validator: validateSelectOptions,
   },
+  currentPage: {
+    type: String,
+    required: true,
+    validator: isPageValid,
+  },
 });
 
 const emit = defineEmits({
@@ -33,6 +42,25 @@ const emit = defineEmits({
       Boolean,
     );
   },
+});
+
+const timelineItemRefs = ref([]);
+
+const scrollToCurrentTimleLineItem = () => {
+  const currentHour = new Date().getHours();
+
+  if (currentHour === MIDNIGHT_HOUR) {
+    document.body.scrollIntoView();
+  } else {
+    timelineItemRefs.value[currentHour - 1].$el.scrollIntoView();
+  }
+};
+
+watchPostEffect(async () => {
+  if (props.currentPage === PAGE_TIMELINE) {
+    await nextTick();
+    scrollToCurrentTimleLineItem();
+  }
 });
 </script>
 
@@ -45,6 +73,7 @@ const emit = defineEmits({
         :timeline-item="timelineItem"
         :activities="activities"
         :activity-select-options="activitySelectOptions"
+        ref="timelineItemRefs"
         @select-activity="emit('setTimelineItemActivity', timelineItem, $event)"
       />
     </ul>

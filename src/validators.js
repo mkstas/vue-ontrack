@@ -1,7 +1,7 @@
 import {
   NAV_ITEMS,
   HOURS_IN_DAY,
-  MIDNIGT_HOUR,
+  MIDNIGHT_HOUR,
   BUTTON_TYPES,
 } from './constans';
 
@@ -56,7 +56,7 @@ export const isButtonTypeValid = (type) => {
 };
 
 export const isHourValid = (hour) => {
-  return isNumber(hour) && isBetween(hour, MIDNIGT_HOUR, HOURS_IN_DAY - 1);
+  return isNumber(hour) && isBetween(hour, MIDNIGHT_HOUR, HOURS_IN_DAY - 1);
 };
 
 export const isTimelineItemValid = ({ hour }) => {
