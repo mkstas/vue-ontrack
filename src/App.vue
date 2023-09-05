@@ -18,9 +18,9 @@ import ProgressView from '@/views/ProgressView.vue';
 
 const currentPage = ref(normalizePageHash());
 
-const timelineItems = ref(generateTimelineItems());
-
 const activities = ref(generateActivities());
+
+const timelineItems = ref(generateTimelineItems(activities));
 
 const activitySelectOptions = computed(() =>
   generateActivitySelectOptions(activities.value),
@@ -38,6 +38,7 @@ const deleteActivity = (activity) => {
   timelineItems.value.forEach((timelineItem) => {
     if (timelineItem.activityId === activity.id) {
       timelineItem.activityId = null;
+      timelineItem.activitySeconds = 0;
     }
   });
 

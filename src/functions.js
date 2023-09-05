@@ -1,7 +1,6 @@
 import {
   PAGE_TIMELINE,
   HOURS_IN_DAY,
-  MIDNIGT_HOUR,
   MILLISECONDS_IN_SECOND,
   SECONDS_IN_HOUR,
   SECONDS_IN_MINUTE,
@@ -39,14 +38,13 @@ export const normalizeSelectValue = (value) => {
   return isNull(value) || isNaN(value) ? value : +value;
 };
 
-export const generateTimelineItems = () => {
-  const timelineItems = [];
-
-  for (let hour = MIDNIGT_HOUR; hour < HOURS_IN_DAY; hour++) {
-    timelineItems.push({ hour, activityId: null, activitySeconds: 0 });
-  }
-
-  return timelineItems;
+export const generateTimelineItems = (activities) => {
+  return [...Array(HOURS_IN_DAY).keys()].map((hour) => ({
+    hour,
+    activityId: hour % 4 === 0 ? null : activities.value[hour % 2].id,
+    activitySeconds:
+      hour & (4 === 0) ? 0 : (15 * SECONDS_IN_MINUTE * hour) % SECONDS_IN_HOUR,
+  }));
 };
 
 export const generateActivities = () => {
