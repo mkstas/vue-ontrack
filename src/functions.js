@@ -3,6 +3,8 @@ import {
   HOURS_IN_DAY,
   MIDNIGT_HOUR,
   SECONDS_IN_HOUR,
+  SECONDS_IN_MINUTE,
+  MINUTES_IN_HOUR,
 } from './constans';
 import { isPageValid, isNull } from './validators';
 
@@ -48,5 +50,22 @@ export const generateActivitySelectOptions = (activities) => {
   return activities.map((activity) => ({
     label: activity.name,
     value: activity.id,
+  }));
+};
+
+export const generatePeriodSelectOptionsLabel = (periodInMinutes) => {
+  const hours = Math.floor(periodInMinutes / MINUTES_IN_HOUR)
+    .toString()
+    .padStart(2, 0);
+
+  const minutes = (periodInMinutes % MINUTES_IN_HOUR).toString().padStart(2, 0);
+
+  return `${hours}:${minutes}`;
+};
+
+export const generatePeriodSelectOptions = (periodsInMinutes) => {
+  return periodsInMinutes.map((periodInMinutes) => ({
+    value: periodInMinutes * SECONDS_IN_MINUTE,
+    label: generatePeriodSelectOptionsLabel(periodInMinutes),
   }));
 };
