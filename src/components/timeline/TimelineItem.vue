@@ -19,7 +19,6 @@ const props = defineProps({
     validator: isTimelineItemValid,
   },
   activities: {
-    type: Object,
     type: Array,
     validator: validateActivities,
   },
