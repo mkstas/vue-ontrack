@@ -6,6 +6,7 @@ import { isNumber, isActivityValid, isUndefined } from '@/validators';
 
 import BaseButton from '../@ui/BaseButton.vue';
 import BaseSelect from '../@ui/BaseSelect.vue';
+import ActivitySecondsToComplete from './ActivitySecondsToComplete.vue';
 
 defineProps({
   activity: {
@@ -29,13 +30,17 @@ const emit = defineEmits({
       </BaseButton>
       <span class="truncate text-xl">{{ activity.name }}</span>
     </div>
-    <div>
+    <div class="flex gap-2">
       <BaseSelect
-        class="font-mono"
+        class="grow font-mono"
         placeholder="hh:mm"
         :selected="activity.secondsToComplete || null"
         :options="PERIOD_SELECT_OPTIONS"
         @select="emit('setSecondsToComplete', $event || 0)"
+      />
+      <ActivitySecondsToComplete
+        v-if="activity.secondsToComplete"
+        :activity="activity"
       />
     </div>
   </li>
