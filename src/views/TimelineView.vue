@@ -6,6 +6,7 @@ import {
   isActivityValid,
   isTimelineItemValid,
   isPageValid,
+  isNumber,
   validateTimelineItems,
   validateSelectOptions,
   validateActivities,
@@ -37,6 +38,11 @@ const props = defineProps({
 });
 
 const emit = defineEmits({
+  updateTimelineItemActivitySeconds(timelineItem, activitySeconds) {
+    return [isTimelineItemValid(timelineItem), isNumber(activitySeconds)].every(
+      Boolean,
+    );
+  },
   setTimelineItemActivity(timelineItem, activity) {
     return [isTimelineItemValid(timelineItem), isActivityValid(activity)].every(
       Boolean,
@@ -82,6 +88,9 @@ watchPostEffect(async () => {
         ref="timelineItemRefs"
         @select-activity="emit('setTimelineItemActivity', timelineItem, $event)"
         @scroll-to-hour="scrollToHour"
+        @update-activity-seconds="
+          emit('updateTimelineItemActivitySeconds', timelineItem, $event)
+        "
       />
     </ul>
   </div>
