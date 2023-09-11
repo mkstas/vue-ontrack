@@ -53,8 +53,8 @@ const deleteActivity = (activity) => {
   activities.value.splice(activities.value.indexOf(activity), 1);
 };
 
-const setTimelineItemActivity = (timelineItem, activity) => {
-  timelineItem.activityId = activity.id;
+const setTimelineItemActivity = (timelineItem, activityId) => {
+  timelineItem.activityId = activityId;
 };
 
 const updateTimelineItemActivitySeconds = (timelineItem, activitySeconds) => {
@@ -69,6 +69,7 @@ provide('activities', activities.value);
 provide('activitySelectOptions', activitySelectOptions.value);
 provide('timelineItems', timelineItems.value);
 provide('updateTimelineItemActivitySeconds', updateTimelineItemActivitySeconds);
+provide('setTimelineItemActivity', setTimelineItemActivity);
 provide('periodSelectOptions', generatePeriodSelectOptions());
 </script>
 
@@ -81,11 +82,9 @@ provide('periodSelectOptions', generatePeriodSelectOptions());
       :activities="activities"
       :current-page="currentPage"
       ref="timeline"
-      @set-timeline-item-activity="setTimelineItemActivity"
     />
     <ActivityView
       v-show="currentPage === PAGE_ACTIVITIES"
-      :activities="activities"
       @create-activity="createActivity"
       @delete-activity="deleteActivity"
       @set-activity-seconds-to-complete="setActivitySecondsToComplete"

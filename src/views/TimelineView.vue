@@ -2,11 +2,7 @@
 import { inject, nextTick, ref, watchPostEffect } from 'vue';
 
 import { MIDNIGHT_HOUR, PAGE_TIMELINE } from '@/constans';
-import {
-  isActivityValid,
-  isTimelineItemValid,
-  isPageValid,
-} from '@/validators';
+import { isPageValid } from '@/validators';
 
 import TimelineItem from '@/components/Timeline/TimelineItem.vue';
 
@@ -15,14 +11,6 @@ const props = defineProps({
     type: String,
     required: true,
     validator: isPageValid,
-  },
-});
-
-const emit = defineEmits({
-  setTimelineItemActivity(timelineItem, activity) {
-    return [isTimelineItemValid(timelineItem), isActivityValid(activity)].every(
-      Boolean,
-    );
   },
 });
 
@@ -62,7 +50,6 @@ watchPostEffect(async () => {
         :key="timelineItem.hour"
         :timeline-item="timelineItem"
         ref="timelineItemRefs"
-        @select-activity="emit('setTimelineItemActivity', timelineItem, $event)"
         @scroll-to-hour="scrollToHour"
       />
     </ul>
