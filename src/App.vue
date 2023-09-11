@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, computed, provide } from 'vue';
 
 import { PAGE_ACTIVITIES, PAGE_PROGRESS, PAGE_TIMELINE } from '@/constans';
 import {
@@ -66,6 +66,8 @@ const updateTimelineItemActivitySeconds = (timelineItem, activitySeconds) => {
 const setActivitySecondsToComplete = (activity, secondsToComplete) => {
   activity.secondsToComplete = secondsToComplete;
 };
+
+provide('updateTimelineItemActivitySeconds', updateTimelineItemActivitySeconds);
 </script>
 
 <template>
@@ -80,7 +82,6 @@ const setActivitySecondsToComplete = (activity, secondsToComplete) => {
       :current-page="currentPage"
       ref="timeline"
       @set-timeline-item-activity="setTimelineItemActivity"
-      @update-timeline-item-activity-seconds="updateTimelineItemActivitySeconds"
     />
     <ActivitiesView
       v-show="currentPage === PAGE_ACTIVITIES"
