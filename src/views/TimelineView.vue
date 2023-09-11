@@ -6,23 +6,11 @@ import {
   isActivityValid,
   isTimelineItemValid,
   isPageValid,
-  validateSelectOptions,
-  validateActivities,
 } from '@/validators';
 
 import TimelineItem from '@/components/Timeline/TimelineItem.vue';
 
 const props = defineProps({
-  activities: {
-    type: Object,
-    type: Array,
-    validator: validateActivities,
-  },
-  activitySelectOptions: {
-    type: Array,
-    required: true,
-    validator: validateSelectOptions,
-  },
   currentPage: {
     type: String,
     required: true,
@@ -73,8 +61,6 @@ watchPostEffect(async () => {
         v-for="timelineItem in timelineItems"
         :key="timelineItem.hour"
         :timeline-item="timelineItem"
-        :activities="activities"
-        :activity-select-options="activitySelectOptions"
         ref="timelineItemRefs"
         @select-activity="emit('setTimelineItemActivity', timelineItem, $event)"
         @scroll-to-hour="scrollToHour"

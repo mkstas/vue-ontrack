@@ -1,17 +1,11 @@
 <script setup>
-import { isNumber, validateActivities, isActivityValid } from '@/validators';
+import { inject } from 'vue';
+
+import { isNumber, isActivityValid } from '@/validators';
 
 import ActivityItem from '@/components/Activity/ActivityItem.vue';
 import TheActivityForm from '@/components/Activity/TheActivityForm.vue';
 import TheActivityEmptyState from '@/components/Activity/TheActivityEmptyState.vue';
-
-defineProps({
-  activities: {
-    type: Array,
-    required: true,
-    validator: validateActivities,
-  },
-});
 
 const emit = defineEmits({
   setActivitySecondsToComplete(activity, secondsToComplete) {
@@ -22,6 +16,8 @@ const emit = defineEmits({
   deleteActivity: isActivityValid,
   createActivity: isActivityValid,
 });
+
+const activities = inject('activities');
 
 const setSecondsToComplete = (activity, secondsToComplete) => {
   emit('setActivitySecondsToComplete', activity, secondsToComplete);

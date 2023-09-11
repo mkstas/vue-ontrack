@@ -17,11 +17,8 @@ import ActivityView from '@/views/ActivityView.vue';
 import ProgressView from '@/views/ProgressView.vue';
 
 const currentPage = ref(normalizePageHash());
-
 const activities = ref(generateActivities());
-
 const timelineItems = ref(generateTimelineItems(activities));
-
 const timeline = ref();
 
 const activitySelectOptions = computed(() =>
@@ -67,6 +64,8 @@ const setActivitySecondsToComplete = (activity, secondsToComplete) => {
   activity.secondsToComplete = secondsToComplete;
 };
 
+provide('activities', activities.value);
+provide('activitySelectOptions', activitySelectOptions.value);
 provide('timelineItems', timelineItems.value);
 provide('updateTimelineItemActivitySeconds', updateTimelineItemActivitySeconds);
 </script>
@@ -78,7 +77,6 @@ provide('updateTimelineItemActivitySeconds', updateTimelineItemActivitySeconds);
     <TimelineView
       v-show="currentPage === PAGE_TIMELINE"
       :activities="activities"
-      :activity-select-options="activitySelectOptions"
       :current-page="currentPage"
       ref="timeline"
       @set-timeline-item-activity="setTimelineItemActivity"
