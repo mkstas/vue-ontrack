@@ -7,6 +7,7 @@ import {
   generateTimelineItems,
   generateActivities,
   generateActivitySelectOptions,
+  generatePeriodSelectOptions,
 } from '@/functions';
 
 import TheHeader from '@/components/Header/TheHeader.vue';
@@ -68,6 +69,7 @@ provide('activities', activities.value);
 provide('activitySelectOptions', activitySelectOptions.value);
 provide('timelineItems', timelineItems.value);
 provide('updateTimelineItemActivitySeconds', updateTimelineItemActivitySeconds);
+provide('periodSelectOptions', generatePeriodSelectOptions());
 </script>
 
 <template>
