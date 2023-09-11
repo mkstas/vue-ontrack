@@ -1,12 +1,11 @@
 <script setup>
-import { nextTick, ref, watchPostEffect } from 'vue';
+import { inject, nextTick, ref, watchPostEffect } from 'vue';
 
 import { MIDNIGHT_HOUR, PAGE_TIMELINE } from '@/constans';
 import {
   isActivityValid,
   isTimelineItemValid,
   isPageValid,
-  validateTimelineItems,
   validateSelectOptions,
   validateActivities,
 } from '@/validators';
@@ -14,11 +13,6 @@ import {
 import TimelineItem from '@/components/Timeline/TimelineItem.vue';
 
 const props = defineProps({
-  timelineItems: {
-    type: Array,
-    required: true,
-    validator: validateTimelineItems,
-  },
   activities: {
     type: Object,
     type: Array,
@@ -45,6 +39,8 @@ const emit = defineEmits({
 });
 
 defineExpose({ scrollToHour });
+
+const timelineItems = inject('timelineItems');
 
 const timelineItemRefs = ref([]);
 

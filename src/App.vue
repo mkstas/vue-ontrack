@@ -13,7 +13,7 @@ import TheHeader from '@/components/Header/TheHeader.vue';
 import TheNav from '@/components/Nav/TheNav.vue';
 
 import TimelineView from '@/views/TimelineView.vue';
-import ActivitiesView from '@/views/ActivitiesView.vue';
+import ActivityView from '@/views/ActivityView.vue';
 import ProgressView from '@/views/ProgressView.vue';
 
 const currentPage = ref(normalizePageHash());
@@ -67,6 +67,7 @@ const setActivitySecondsToComplete = (activity, secondsToComplete) => {
   activity.secondsToComplete = secondsToComplete;
 };
 
+provide('timelineItems', timelineItems.value);
 provide('updateTimelineItemActivitySeconds', updateTimelineItemActivitySeconds);
 </script>
 
@@ -76,17 +77,15 @@ provide('updateTimelineItemActivitySeconds', updateTimelineItemActivitySeconds);
   <main class="flex flex-grow flex-col">
     <TimelineView
       v-show="currentPage === PAGE_TIMELINE"
-      :timeline-items="timelineItems"
       :activities="activities"
       :activity-select-options="activitySelectOptions"
       :current-page="currentPage"
       ref="timeline"
       @set-timeline-item-activity="setTimelineItemActivity"
     />
-    <ActivitiesView
+    <ActivityView
       v-show="currentPage === PAGE_ACTIVITIES"
       :activities="activities"
-      :timeline-items="timelineItems"
       @create-activity="createActivity"
       @delete-activity="deleteActivity"
       @set-activity-seconds-to-complete="setActivitySecondsToComplete"
