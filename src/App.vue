@@ -73,6 +73,7 @@ provide('updateTimelineItemActivitySeconds', updateTimelineItemActivitySeconds);
 provide('setTimelineItemActivity', setTimelineItemActivity);
 provide('setActivitySecondsToComplete', setActivitySecondsToComplete);
 provide('createActivity', createActivity);
+provide('deleteActivity', deleteActivity);
 </script>
 
 <template>
@@ -84,10 +85,7 @@ provide('createActivity', createActivity);
       :current-page="currentPage"
       ref="timeline"
     />
-    <ActivityView
-      v-show="currentPage === PAGE_ACTIVITIES"
-      @delete-activity="deleteActivity"
-    />
+    <ActivityView v-show="currentPage === PAGE_ACTIVITIES" />
     <ProgressView v-show="currentPage === PAGE_PROGRESS" />
   </main>
 

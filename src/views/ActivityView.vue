@@ -1,15 +1,9 @@
 <script setup>
 import { inject } from 'vue';
 
-import { isActivityValid } from '@/validators';
-
 import ActivityItem from '@/components/Activity/ActivityItem.vue';
 import TheActivityForm from '@/components/Activity/TheActivityForm.vue';
 import TheActivityEmptyState from '@/components/Activity/TheActivityEmptyState.vue';
-
-const emit = defineEmits({
-  deleteActivity: isActivityValid,
-});
 
 const activities = inject('activities');
 </script>
@@ -21,7 +15,6 @@ const activities = inject('activities');
         v-for="activity in activities"
         :key="activity.id"
         :activity="activity"
-        @delete="emit('deleteActivity', activity)"
       />
     </ul>
     <TheActivityEmptyState v-else />
