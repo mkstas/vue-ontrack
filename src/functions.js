@@ -1,12 +1,11 @@
 import {
-  PAGE_TIMELINE,
   HOURS_IN_DAY,
   MILLISECONDS_IN_SECOND,
   SECONDS_IN_HOUR,
   SECONDS_IN_MINUTE,
   MINUTES_IN_HOUR,
 } from './constans';
-import { isPageValid, isNull } from './validators';
+import { isNull } from './validators';
 
 export const id = () => {
   return Date.now().toString(36) + Math.random().toString(36).substring(2);
@@ -20,18 +19,6 @@ export const formatSeconds = (seconds) => {
   const utc = date.toUTCString();
 
   return utc.substring(utc.indexOf(':') - 2, utc.indexOf(':') + 6);
-};
-
-export const normalizePageHash = () => {
-  const page = window.location.hash.slice(1);
-
-  if (isPageValid(page)) {
-    return page;
-  }
-
-  window.location.hash = PAGE_TIMELINE;
-
-  return PAGE_TIMELINE;
 };
 
 export const normalizeSelectValue = (value) => {

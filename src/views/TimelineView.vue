@@ -20,11 +20,12 @@ function scrollToHour(hour = null, isSmooth = true) {
     behavior: isSmooth ? 'smooth' : 'instant',
   };
 
-  if (hour === MIDNIGHT_HOUR) {
-    document.body.scrollIntoView(options);
-  } else {
-    timelineItemRefs.value[hour - 1].$el.scrollIntoView(options);
-  }
+  const element =
+    hour === MIDNIGHT_HOUR
+      ? document.body
+      : timelineItemRefs.value[hour - 1].$el;
+
+  element.scrollIntoView(options);
 }
 
 watchPostEffect(async () => {
