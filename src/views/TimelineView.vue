@@ -2,17 +2,10 @@
 import { inject, nextTick, ref, watchPostEffect } from 'vue';
 
 import { MIDNIGHT_HOUR, PAGE_TIMELINE } from '@/constans';
-import { isPageValid } from '@/validators';
+
+import { currentPage } from '@/router';
 
 import TimelineItem from '@/components/Timeline/TimelineItem.vue';
-
-const props = defineProps({
-  currentPage: {
-    type: String,
-    required: true,
-    validator: isPageValid,
-  },
-});
 
 defineExpose({ scrollToHour });
 
@@ -35,7 +28,7 @@ function scrollToHour(hour = null, isSmooth = true) {
 }
 
 watchPostEffect(async () => {
-  if (props.currentPage === PAGE_TIMELINE) {
+  if (currentPage.value === PAGE_TIMELINE) {
     await nextTick();
     scrollToHour(null, false);
   }

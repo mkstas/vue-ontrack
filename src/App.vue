@@ -9,7 +9,7 @@ import {
   generatePeriodSelectOptions,
 } from '@/functions';
 
-import { currentPage, navigate, timelineRef } from '@/router';
+import { currentPage, timelineRef } from '@/router';
 
 import TheHeader from '@/components/Header/TheHeader.vue';
 import TheNav from '@/components/Nav/TheNav.vue';
@@ -64,17 +64,13 @@ provide('deleteActivity', deleteActivity);
 </script>
 
 <template>
-  <TheHeader @navigate="navigate" />
+  <TheHeader />
 
   <main class="flex flex-grow flex-col">
-    <TimelineView
-      v-show="currentPage === PAGE_TIMELINE"
-      :current-page="currentPage"
-      ref="timelineRef"
-    />
+    <TimelineView v-show="currentPage === PAGE_TIMELINE" ref="timelineRef" />
     <ActivityView v-show="currentPage === PAGE_ACTIVITIES" />
     <ProgressView v-show="currentPage === PAGE_PROGRESS" />
   </main>
 
-  <TheNav :current-page="currentPage" @navigate="navigate" />
+  <TheNav />
 </template>

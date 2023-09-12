@@ -1,18 +1,17 @@
 <script setup>
 import { PAGE_PROGRESS, PAGE_TIMELINE } from '@/constans';
-import { isPageValid } from '@/validators';
+
+import { navigate } from '@/router';
 
 import TheLogo from '@/components/Logo/TheLogo.vue';
 import TheHeaderProgress from './TheHeaderProgress.vue';
-
-const emit = defineEmits({
-  navigate: isPageValid,
-});
 </script>
 
 <template>
-  <header class="sticky top-0 z-20 flex items-center justify-between border-b bg-white p-3">
-    <TheLogo @click="emit('navigate', PAGE_TIMELINE)" />
-    <TheHeaderProgress @click="emit('navigate', PAGE_PROGRESS)" />
+  <header
+    class="sticky top-0 z-20 flex items-center justify-between border-b bg-white p-3"
+  >
+    <TheLogo @click="navigate(PAGE_TIMELINE)" />
+    <TheHeaderProgress @click="navigate(PAGE_PROGRESS)" />
   </header>
 </template>
