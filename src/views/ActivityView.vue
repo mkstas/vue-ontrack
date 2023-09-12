@@ -9,7 +9,6 @@ import TheActivityEmptyState from '@/components/Activity/TheActivityEmptyState.v
 
 const emit = defineEmits({
   deleteActivity: isActivityValid,
-  createActivity: isActivityValid,
 });
 
 const activities = inject('activities');
@@ -26,6 +25,6 @@ const activities = inject('activities');
       />
     </ul>
     <TheActivityEmptyState v-else />
-    <TheActivityForm @submit="emit('createActivity', $event)" />
+    <TheActivityForm />
   </div>
 </template>

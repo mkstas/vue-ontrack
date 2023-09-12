@@ -72,6 +72,7 @@ provide('periodSelectOptions', generatePeriodSelectOptions());
 provide('updateTimelineItemActivitySeconds', updateTimelineItemActivitySeconds);
 provide('setTimelineItemActivity', setTimelineItemActivity);
 provide('setActivitySecondsToComplete', setActivitySecondsToComplete);
+provide('createActivity', createActivity);
 </script>
 
 <template>
@@ -80,13 +81,11 @@ provide('setActivitySecondsToComplete', setActivitySecondsToComplete);
   <main class="flex flex-grow flex-col">
     <TimelineView
       v-show="currentPage === PAGE_TIMELINE"
-      :activities="activities"
       :current-page="currentPage"
       ref="timeline"
     />
     <ActivityView
       v-show="currentPage === PAGE_ACTIVITIES"
-      @create-activity="createActivity"
       @delete-activity="deleteActivity"
     />
     <ProgressView v-show="currentPage === PAGE_PROGRESS" />
