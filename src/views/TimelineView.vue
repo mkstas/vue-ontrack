@@ -2,6 +2,7 @@
 import { inject, nextTick, ref, watchPostEffect } from 'vue';
 
 import { MIDNIGHT_HOUR, PAGE_TIMELINE } from '@/constans';
+import { currentHour } from '@/functions';
 import { timelineItemsKey } from '@/keys';
 
 import { currentPage } from '@/router';
@@ -15,7 +16,7 @@ const timelineItems = inject(timelineItemsKey);
 const timelineItemRefs = ref([]);
 
 function scrollToHour(hour = null, isSmooth = true) {
-  hour ??= new Date().getHours();
+  hour ??= currentHour();
 
   const options = {
     behavior: isSmooth ? 'smooth' : 'instant',
@@ -45,7 +46,7 @@ watchPostEffect(async () => {
         :key="timelineItem.hour"
         :timeline-item="timelineItem"
         ref="timelineItemRefs"
-        @scroll-to-hour="scrollToHour"
+        @scroll-to-hour="scrollToHour(timelineItem.hour)"
       />
     </ul>
   </div>
