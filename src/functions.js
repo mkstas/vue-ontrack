@@ -33,13 +33,6 @@ export const generateTimelineItems = (activities) => {
       : null,
     activitySeconds: [0, 1, 2, 3, 4].includes(hour) ? hour * 600 : null,
   }));
-
-  // return [...Array(HOURS_IN_DAY).keys()].map((hour) => ({
-  //   hour,
-  //   activityId: hour % 4 === 0 ? null : activities.value[hour % 2].id,
-  //   activitySeconds:
-  //     hour & (4 === 0) ? 0 : (15 * SECONDS_IN_MINUTE * hour) % SECONDS_IN_HOUR,
-  // }));
 };
 
 export const generateActivities = () => {

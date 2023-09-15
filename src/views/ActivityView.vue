@@ -1,11 +1,13 @@
 <script setup>
 import { inject } from 'vue';
 
+import { activitiesKey } from '@/keys';
+
 import ActivityItem from '@/components/Activity/ActivityItem.vue';
 import TheActivityForm from '@/components/Activity/TheActivityForm.vue';
 import TheActivityEmptyState from '@/components/Activity/TheActivityEmptyState.vue';
 
-const activities = inject('activities');
+const activities = inject(activitiesKey);
 </script>
 
 <template>

@@ -5,6 +5,12 @@ import { TrashIcon } from '@heroicons/vue/24/outline';
 import { BUTTON_TYPE_DANGER } from '@/constans';
 import { isActivityValid } from '@/validators';
 
+import {
+  periodSelectOptionsKey,
+  setActivitySecondsToCompleteKey,
+  deleteActivityKey,
+} from '@/keys';
+
 import BaseButton from '../@ui/BaseButton.vue';
 import BaseSelect from '../@ui/BaseSelect.vue';
 import ActivitySecondsToComplete from './ActivitySecondsToComplete.vue';
@@ -17,9 +23,9 @@ defineProps({
   },
 });
 
-const periodSelectOptions = inject('periodSelectOptions');
-const setActivitySecondsToComplete = inject('setActivitySecondsToComplete');
-const deleteActivity = inject('deleteActivity');
+const periodSelectOptions = inject(periodSelectOptionsKey);
+const setActivitySecondsToComplete = inject(setActivitySecondsToCompleteKey);
+const deleteActivity = inject(deleteActivityKey);
 </script>
 
 <template>
