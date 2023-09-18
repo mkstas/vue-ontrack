@@ -1,11 +1,8 @@
 <script setup>
-import { ref, provide, readonly } from 'vue';
+import { provide, readonly } from 'vue';
 
 import { PAGE_ACTIVITIES, PAGE_PROGRESS, PAGE_TIMELINE } from '@/constans';
-import {
-  generateTimelineItems,
-  generatePeriodSelectOptions,
-} from '@/functions';
+import { generatePeriodSelectOptions } from '@/functions';
 import { currentPage, timelineRef } from '@/router';
 import * as keys from '@/keys';
 
@@ -17,22 +14,18 @@ import {
   setActivitySecondsToComplete,
 } from '@/activities';
 
+import {
+  timelineItems,
+  setTimelineItemActivity,
+  updateTimelineItemActivitySeconds,
+} from '@/timeline-items';
+
 import TheHeader from '@/components/Header/TheHeader.vue';
 import TheNav from '@/components/Nav/TheNav.vue';
 
 import TimelineView from '@/views/TimelineView.vue';
 import ActivityView from '@/views/ActivityView.vue';
 import ProgressView from '@/views/ProgressView.vue';
-
-const timelineItems = ref(generateTimelineItems(activities));
-
-const setTimelineItemActivity = (timelineItem, activityId) => {
-  timelineItem.activityId = activityId;
-};
-
-const updateTimelineItemActivitySeconds = (timelineItem, activitySeconds) => {
-  timelineItem.activitySeconds += activitySeconds;
-};
 
 provide(keys.activitiesKey, activities.value);
 provide(keys.activitySelectOptionsKey, readonly(activitySelectOptions));
