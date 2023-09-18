@@ -18,6 +18,7 @@ import {
   timelineItems,
   setTimelineItemActivity,
   updateTimelineItemActivitySeconds,
+  resetTimelineItemActivity,
 } from '@/timeline-items';
 
 import TheHeader from '@/components/Header/TheHeader.vue';
@@ -39,7 +40,10 @@ provide(
 provide(keys.setTimelineItemActivityKey, setTimelineItemActivity);
 provide(keys.setActivitySecondsToCompleteKey, setActivitySecondsToComplete);
 provide(keys.createActivityKey, createActivity);
-provide(keys.deleteActivityKey, deleteActivity);
+provide(keys.deleteActivityKey, (activity) => {
+  resetTimelineItemActivity(activity);
+  deleteActivity(activity);
+});
 </script>
 
 <template>
