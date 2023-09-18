@@ -35,3 +35,13 @@ export const resetTimelineItemActivity = (activity) => {
     }
   });
 };
+
+export const getTotalActivitySeconds = (activity) => {
+  return timelineItems.value
+    .filter((timelineItem) => timelineItem.activityId === activity.id)
+    .reduce(
+      (totalSeconds, timelineItem) =>
+        Math.round(timelineItem.activitySeconds + totalSeconds),
+      0,
+    );
+};

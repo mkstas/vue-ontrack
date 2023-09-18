@@ -1,7 +1,5 @@
 import {
-  HOURS_IN_DAY,
   MILLISECONDS_IN_SECOND,
-  SECONDS_IN_HOUR,
   SECONDS_IN_MINUTE,
   MINUTES_IN_HOUR,
 } from './constans';
@@ -29,21 +27,6 @@ export const normalizeSelectValue = (value) => {
   return isNull(value) || isNaN(value) ? value : +value;
 };
 
-export const generateActivities = () => {
-  return ['Coding', 'Reading', 'Trainig'].map((name, hours) => ({
-    id: id(),
-    name,
-    secondsToComplete: hours * SECONDS_IN_HOUR,
-  }));
-};
-
-export const generateActivitySelectOptions = (activities) => {
-  return activities.map((activity) => ({
-    label: activity.name,
-    value: activity.id,
-  }));
-};
-
 export const generatePeriodSelectOptionsLabel = (periodInMinutes) => {
   const hours = Math.floor(periodInMinutes / MINUTES_IN_HOUR)
     .toString()
@@ -64,14 +47,4 @@ export const generatePeriodSelectOptions = () => {
     value: periodInMinutes * SECONDS_IN_MINUTE,
     label: generatePeriodSelectOptionsLabel(periodInMinutes),
   }));
-};
-
-export const getTotalActivitySeconds = (activity, timelineItems) => {
-  return timelineItems
-    .filter((timelineItem) => timelineItem.activityId === activity.id)
-    .reduce(
-      (totalSeconds, timelineItem) =>
-        Math.round(timelineItem.activitySeconds + totalSeconds),
-      0,
-    );
 };

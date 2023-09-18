@@ -7,7 +7,6 @@ import { currentPage, timelineRef } from '@/router';
 import * as keys from '@/keys';
 
 import {
-  activities,
   activitySelectOptions,
   createActivity,
   deleteActivity,
@@ -15,7 +14,6 @@ import {
 } from '@/activities';
 
 import {
-  timelineItems,
   setTimelineItemActivity,
   updateTimelineItemActivitySeconds,
   resetTimelineItemActivity,
@@ -28,9 +26,7 @@ import TimelineView from '@/views/TimelineView.vue';
 import ActivityView from '@/views/ActivityView.vue';
 import ProgressView from '@/views/ProgressView.vue';
 
-provide(keys.activitiesKey, activities.value);
 provide(keys.activitySelectOptionsKey, readonly(activitySelectOptions));
-provide(keys.timelineItemsKey, timelineItems);
 provide(keys.periodSelectOptionsKey, readonly(generatePeriodSelectOptions()));
 
 provide(

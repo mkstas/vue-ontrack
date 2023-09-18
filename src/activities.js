@@ -1,6 +1,22 @@
 import { ref, computed } from 'vue';
 
-import { generateActivities, generateActivitySelectOptions } from '@/functions';
+import { SECONDS_IN_HOUR } from '@/constans';
+import { id } from '@/functions';
+
+const generateActivities = () => {
+  return ['Coding', 'Reading', 'Trainig'].map((name, hours) => ({
+    id: id(),
+    name,
+    secondsToComplete: hours * SECONDS_IN_HOUR,
+  }));
+};
+
+const generateActivitySelectOptions = (activities) => {
+  return activities.map((activity) => ({
+    label: activity.name,
+    value: activity.id,
+  }));
+};
 
 export const activities = ref(generateActivities());
 

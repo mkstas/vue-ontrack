@@ -1,17 +1,15 @@
 <script setup>
-import { inject, nextTick, ref, watchPostEffect } from 'vue';
+import { nextTick, ref, watchPostEffect } from 'vue';
 
 import { MIDNIGHT_HOUR, PAGE_TIMELINE } from '@/constans';
 import { currentHour } from '@/functions';
-import { timelineItemsKey } from '@/keys';
 
 import { currentPage } from '@/router';
+import { timelineItems } from '@/timeline-items';
 
 import TimelineItem from '@/components/Timeline/TimelineItem.vue';
 
 defineExpose({ scrollToHour });
-
-const timelineItems = inject(timelineItemsKey);
 
 const timelineItemRefs = ref([]);
 
