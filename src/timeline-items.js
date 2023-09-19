@@ -59,6 +59,6 @@ export const scrollToHour = (hour, isSmooth = true) => {
   });
 };
 
-export const scrollToCurrentHour = (isSmooth = true) => {
+export const scrollToCurrentHour = (isSmooth = false) => {
   scrollToHour(currentHour(), isSmooth);
 };

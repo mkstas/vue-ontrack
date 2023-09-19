@@ -7,7 +7,7 @@ import { scrollToCurrentHour } from '@/timeline-items';
 
 const handleClick = () => {
   currentPage.value === PAGE_TIMELINE
-    ? scrollToCurrentHour()
+    ? scrollToCurrentHour(true)
     : navigate(PAGE_TIMELINE);
 };
 </script>
