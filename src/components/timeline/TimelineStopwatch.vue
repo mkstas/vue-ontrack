@@ -10,7 +10,7 @@ import {
 } from '@/constans';
 import { isTimelineItemValid } from '@/validators';
 import { formatSeconds, currentHour } from '@/functions';
-import { updateTimelineItemActivitySeconds } from '@/timeline-items';
+import { updateTimelineItem } from '@/timeline-items';
 
 import BaseButton from '../@ui/BaseButton.vue';
 
@@ -29,10 +29,9 @@ const isStartButtonDisabled = props.timelineItem.hour !== currentHour();
 
 const start = () => {
   isRunning.value = setInterval(() => {
-    updateTimelineItemActivitySeconds(
-      props.timelineItem,
-      props.timelineItem.activitySeconds + 1,
-    );
+    updateTimelineItem(props.timelineItem, {
+      activitySeconds: props.timelineItem.activitySeconds + 1,
+    });
 
     seconds.value++;
   }, MILLISECONDS_IN_SECOND);
@@ -47,10 +46,9 @@ const stop = () => {
 const reset = () => {
   stop();
 
-  updateTimelineItemActivitySeconds(
-    props.timelineItem,
-    props.timelineItem.activitySeconds - seconds.value,
-  );
+  updateTimelineItem(props.timelineItem, {
+    activitySeconds: props.timelineItem.activitySeconds - seconds.value,
+  });
 
   seconds.value = 0;
 };
@@ -58,7 +56,7 @@ const reset = () => {
 watch(
   () => props.timelineItem.activityId,
   () => {
-    updateTimelineItemActivitySeconds(props.timelineItem, seconds.value);
+    updateTimelineItem(props.timelineItem, { activitySeconds: seconds.value });
   },
 );
 </script>
