@@ -24,7 +24,7 @@ export const updateTimelineItemActivitySeconds = (
   timelineItem,
   activitySeconds,
 ) => {
-  timelineItem.activitySeconds += activitySeconds;
+  timelineItem.activitySeconds = activitySeconds;
 };
 
 export const resetTimelineItemActivity = (activity) => {
