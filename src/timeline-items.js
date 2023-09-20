@@ -21,21 +21,22 @@ export const updateTimelineItem = (timelineItem, fields) => {
   return Object.assign(timelineItem, fields);
 };
 
-const filterTimelineItemsByActivity = ({ id }) => {
-  return timelineItems.value.filter(({ activityId }) => activityId === id);
+const filterTimelineItemsByActivity = (timelineItems, { id }) => {
+  return timelineItems.filter(({ activityId }) => activityId === id);
 };
 
-export const resetTimelineItemActivity = (activity) => {
-  filterTimelineItemsByActivity(activity).forEach((timelineItem) =>
-    updateTimelineItem(timelineItem, {
-      activityId: null,
-      activitySeconds: 0,
-    }),
+export const resetTimelineItemActivity = (timelineItems, activity) => {
+  filterTimelineItemsByActivity(timelineItems, activity).forEach(
+    (timelineItem) =>
+      updateTimelineItem(timelineItem, {
+        activityId: null,
+        activitySeconds: 0,
+      }),
   );
 };
 
-export const calculateTrackedActivitySeconds = (activity) => {
-  return filterTimelineItemsByActivity(activity)
+export const calculateTrackedActivitySeconds = (timelineItems, activity) => {
+  return filterTimelineItemsByActivity(timelineItems, activity)
     .map(({ activitySeconds }) => activitySeconds)
     .reduce((total, seconds) => Math.round(total + seconds), 0);
 };

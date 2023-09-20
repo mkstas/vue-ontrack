@@ -4,7 +4,7 @@ import { ICON_TRASH } from '@/icons';
 import { isActivityValid } from '@/validators';
 
 import { updateActivity, deleteActivity } from '@/activities';
-import { resetTimelineItemActivity } from '@/timeline-items';
+import { timelineItems, resetTimelineItemActivity } from '@/timeline-items';
 
 import BaseButton from '../@ui/BaseButton.vue';
 import BaseSelect from '../@ui/BaseSelect.vue';
@@ -20,7 +20,7 @@ defineProps({
 });
 
 const deleteAndResetActivity = (activity) => {
-  resetTimelineItemActivity(activity);
+  resetTimelineItemActivity(timelineItems.value, activity);
   deleteActivity(activity);
 };
 </script>
