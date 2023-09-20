@@ -10,10 +10,10 @@ export const timelineItemRefs = ref([]);
 const generateTimelineItems = () => {
   return [...Array(HOURS_IN_DAY).keys()].map((hour) => ({
     hour,
-    activityId: [0, 1, 2, 3, 4].includes(hour)
-      ? activities.value[hour % 3].id
-      : null,
-    activitySeconds: [0, 1, 2, 3, 4].includes(hour) ? hour * 600 : null,
+    activityId: null, // [0, 1, 2, 3, 4].includes(hour)
+    // ? activities.value[hour % 3].id
+    // : null,
+    activitySeconds: 0, // [0, 1, 2, 3, 4].includes(hour) ? hour * 600 : null,
   }));
 };
 

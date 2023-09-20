@@ -1,13 +1,15 @@
 import { ref, computed } from 'vue';
 
-import { SECONDS_IN_HOUR } from '@/constans';
+// import { SECONDS_IN_HOUR } from '@/constans';
+import { HUNDRED_PERCENT } from '@/constans';
 import { id } from '@/functions';
+import { getTotalActivitySeconds } from '@/timeline-items';
 
 const generateActivities = () => {
   return ['Coding', 'Reading', 'Trainig'].map((name, hours) => ({
     id: id(),
     name,
-    secondsToComplete: hours * SECONDS_IN_HOUR,
+    secondsToComplete: 15 * 60, // hours * SECONDS_IN_HOUR,
   }));
 };
 
@@ -38,4 +40,11 @@ export const deleteActivity = (activity) => {
 
 export const updateActivity = (activity, fields) => {
   return Object.assign(activity, fields);
+};
+
+export const getActivityProgress = (activity) => {
+  return Math.floor(
+    (getTotalActivitySeconds(activity) * HUNDRED_PERCENT) /
+      activity.secondsToComplete,
+  );
 };
