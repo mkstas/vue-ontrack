@@ -3,7 +3,6 @@ import { ref, computed } from 'vue';
 // import { SECONDS_IN_HOUR } from '@/constans';
 import { HUNDRED_PERCENT } from '@/constans';
 import { id } from '@/functions';
-import { getTotalActivitySeconds } from '@/timeline-items';
 
 const generateActivities = () => {
   return ['Coding', 'Reading', 'Trainig'].map((name, hours) => ({
@@ -42,9 +41,9 @@ export const updateActivity = (activity, fields) => {
   return Object.assign(activity, fields);
 };
 
-export const getActivityProgress = (activity) => {
-  return Math.floor(
-    (getTotalActivitySeconds(activity) * HUNDRED_PERCENT) /
-      activity.secondsToComplete,
-  );
+export const calculateActivityCompletionPercentage = (
+  { secondsToComplete },
+  trackedSeconds,
+) => {
+  return Math.floor((trackedSeconds * HUNDRED_PERCENT) / secondsToComplete);
 };
