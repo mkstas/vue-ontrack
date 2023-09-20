@@ -2,8 +2,11 @@ import {
   MILLISECONDS_IN_SECOND,
   SECONDS_IN_MINUTE,
   MINUTES_IN_HOUR,
-} from './constans';
-import { isNull } from './validators';
+  LOW_PERCENT,
+  MEDIUM_PERCENT,
+  HUNDRED_PERCENT,
+} from '@/constans';
+import { isNull } from '@/validators';
 
 export const id = () => {
   return Date.now().toString(36) + Math.random().toString(36).substring(2);
@@ -47,4 +50,12 @@ export const generatePeriodSelectOptions = () => {
     value: periodInMinutes * SECONDS_IN_MINUTE,
     label: generatePeriodSelectOptionsLabel(periodInMinutes),
   }));
+};
+
+export const getProgressColorClass = (percentage) => {
+  if (percentage < LOW_PERCENT) return 'bg-red-500';
+  if (percentage < MEDIUM_PERCENT) return 'bg-yellow-500';
+  if (percentage < HUNDRED_PERCENT) return 'bg-blue-500';
+
+  return 'bg-green-500';
 };
