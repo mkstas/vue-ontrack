@@ -1,9 +1,10 @@
 <script setup>
-import { CheckCircleIcon } from '@heroicons/vue/24/solid';
-
 import { PAGE_PROGRESS } from '@/constans';
+import { ICON_CHECK_CIRCLE } from '@/icons';
 
 import { navigate } from '@/router';
+
+import BaseIcon from '../@ui/BaseIcon.vue';
 </script>
 
 <template>
@@ -14,7 +15,7 @@ import { navigate } from '@/router';
   >
     <div v-if="true" class="flex items-center gap-1">
       <div>Day complete!</div>
-      <CheckCircleIcon class="h-7 text-green-500" />
+      <BaseIcon :name="ICON_CHECK_CIRCLE" class="h-7 text-green-500" />
     </div>
     <div v-else class="flex items-center gap-1">
       <div>Progress: <span class="font-mono">20%</span></div>

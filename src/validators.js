@@ -5,6 +5,8 @@ import {
   BUTTON_TYPES,
 } from './constans';
 
+import { ICONS } from './icons';
+
 export const isNull = (value) => {
   return value === null;
 };
@@ -49,6 +51,10 @@ export const isSelectValueValid = (value) => {
 
 export const isPageValid = (page) => {
   return NAV_ITEMS.some((navItem) => navItem.page === page);
+};
+
+export const isIconValid = (icon) => {
+  return Object.keys(ICONS).includes(icon);
 };
 
 export const isNavItemValid = (navItem) => {

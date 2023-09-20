@@ -1,8 +1,8 @@
 <script setup>
 import { computed } from 'vue';
-import { XMarkIcon } from '@heroicons/vue/24/outline';
 
 import { BUTTON_TYPE_NEUTRAL } from '@/constans';
+import { ICON_X_MARK } from '@/icons';
 import {
   validateSelectOptions,
   isUndefinedOrNull,
@@ -11,6 +11,7 @@ import {
 import { normalizeSelectValue } from '@/functions';
 
 import BaseButton from './BaseButton.vue';
+import BaseIcon from './BaseIcon.vue';
 
 const props = defineProps({
   selected: [String, Number],
@@ -41,7 +42,7 @@ const select = (value) => {
 <template>
   <div class="flex gap-2">
     <BaseButton :type="BUTTON_TYPE_NEUTRAL" @click="select(null)">
-      <XMarkIcon class="h-8" />
+      <BaseIcon :name="ICON_X_MARK" class="h-8" />
     </BaseButton>
     <select
       class="w-full truncate rounded bg-gray-100 py-1 px-2 text-2xl"

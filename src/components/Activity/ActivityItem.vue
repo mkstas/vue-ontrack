@@ -1,7 +1,6 @@
 <script setup>
-import { TrashIcon } from '@heroicons/vue/24/outline';
-
 import { BUTTON_TYPE_DANGER, PERIOD_SELECT_OPTIONS } from '@/constans';
+import { ICON_TRASH } from '@/icons';
 import { isActivityValid } from '@/validators';
 
 import { updateActivity, deleteActivity } from '@/activities';
@@ -9,6 +8,7 @@ import { resetTimelineItemActivity } from '@/timeline-items';
 
 import BaseButton from '../@ui/BaseButton.vue';
 import BaseSelect from '../@ui/BaseSelect.vue';
+import BaseIcon from '../@ui/BaseIcon.vue';
 import ActivitySecondsToComplete from './ActivitySecondsToComplete.vue';
 
 defineProps({
@@ -32,7 +32,7 @@ const deleteAndResetActivity = (activity) => {
         :type="BUTTON_TYPE_DANGER"
         @click="deleteAndResetActivity(activity)"
       >
-        <TrashIcon class="h-8" />
+        <BaseIcon :name="ICON_TRASH" class="h-8" />
       </BaseButton>
       <span class="truncate text-xl">{{ activity.name }}</span>
     </div>
