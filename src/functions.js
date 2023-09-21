@@ -26,6 +26,10 @@ export const formatSeconds = (seconds) => {
   return utc.substring(utc.indexOf(':') - 2, utc.indexOf(':') + 6);
 };
 
+export const formatSecondsWithSign = (seconds) => {
+  return `${seconds >= 0 ? '+' : '-'}${formatSeconds(seconds)}`;
+};
+
 export const normalizeSelectValue = (value) => {
   return isNull(value) || isNaN(value) ? value : +value;
 };
