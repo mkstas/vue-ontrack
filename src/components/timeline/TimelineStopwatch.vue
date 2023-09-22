@@ -1,16 +1,17 @@
 <script setup>
-import { ref, watch } from 'vue';
+import { watch } from 'vue';
 
 import {
   BUTTON_TYPE_SUCCESS,
   BUTTON_TYPE_WARNING,
   BUTTON_TYPE_DANGER,
-  MILLISECONDS_IN_SECOND,
 } from '@/constans';
 import { ICON_ARROW_PATH, ICON_PAUSE, ICON_PLAY } from '@/icons';
 import { isTimelineItemValid } from '@/validators';
 import { formatSeconds, currentHour } from '@/functions';
 import { updateTimelineItem } from '@/timeline-items';
+
+import { useStopwatch } from '@/composables/stopwatch';
 
 import BaseButton from '../@ui/BaseButton.vue';
 import BaseIcon from '../@ui/BaseIcon.vue';
@@ -23,46 +24,18 @@ const props = defineProps({
   },
 });
 
-const seconds = ref(props.timelineItem.activitySeconds);
-const isRunning = ref(false);
-const temp = 120;
-
-const isStartButtonDisabled = props.timelineItem.hour !== currentHour();
-
-const start = () => {
-  isRunning.value = setInterval(() => {
-    updateTimelineItem(props.timelineItem, {
-      activitySeconds: props.timelineItem.activitySeconds + temp,
-    });
-
-    seconds.value += temp;
-  }, MILLISECONDS_IN_SECOND);
-};
-
-const stop = () => {
-  clearInterval(isRunning.value);
-
-  isRunning.value = false;
-};
-
-const reset = () => {
-  stop();
-
+const updateTimelineItemActivitySeconds = () => {
   updateTimelineItem(props.timelineItem, {
-    activitySeconds: props.timelineItem.activitySeconds - seconds.value,
+    activitySeconds: seconds.value,
   });
-
-  seconds.value = 0;
 };
 
-watch(
-  () => props.timelineItem.activityId,
-  () => {
-    updateTimelineItem(props.timelineItem, {
-      activitySeconds: seconds.value,
-    });
-  },
+const { seconds, isRunning, start, stop, reset } = useStopwatch(
+  props.timelineItem.activitySeconds,
+  updateTimelineItemActivitySeconds,
 );
+
+watch(() => props.timelineItem.activityId, updateTimelineItemActivitySeconds);
 </script>
 
 <template>
@@ -81,7 +54,7 @@ watch(
     <BaseButton
       v-else
       :type="BUTTON_TYPE_SUCCESS"
-      :disabled="isStartButtonDisabled"
+      :disabled="props.timelineItem.hour !== currentHour()"
       @click="start"
     >
       <BaseIcon :name="ICON_PLAY" />
