@@ -9,10 +9,13 @@ import {
 
 export const useProgress = (activity) => {
   const percentage = computed(() =>
-    calculateActivityCompletionPercentage(activity, trackedSeconds.value),
+    calculateActivityCompletionPercentage(
+      activity,
+      trackedActivitySeconds.value,
+    ),
   );
 
-  const trackedSeconds = computed(() =>
+  const trackedActivitySeconds = computed(() =>
     calculateTrackedActivitySeconds(timelineItems.value, activity),
   );
 
@@ -20,7 +23,7 @@ export const useProgress = (activity) => {
 
   return {
     percentage,
-    trackedSeconds,
+    trackedActivitySeconds,
     colorClass,
   };
 };
