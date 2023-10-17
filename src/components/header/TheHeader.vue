@@ -1,5 +1,5 @@
 <script setup>
-import TheLogo from '@/components/Logo/TheLogo.vue';
+import TheLogo from '../logo/TheLogo.vue';
 import TheHeaderProgress from './TheHeaderProgress.vue';
 </script>
 
